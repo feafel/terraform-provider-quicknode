@@ -646,20 +646,10 @@ func (r *StreamResource) readStreamFromAPI(ctx context.Context, streamID string,
 		}
 	}
 	if fixBlockReorgs, ok := result["fix_block_reorgs"].(float64); ok {
-		// Treat 0 as null for optional fields
-		if fixBlockReorgs == 0 {
-			data.FixBlockReorgs = types.Int64Null()
-		} else {
-			data.FixBlockReorgs = types.Int64Value(int64(fixBlockReorgs))
-		}
+		data.FixBlockReorgs = types.Int64Value(int64(fixBlockReorgs))
 	}
 	if keepDistanceFromTip, ok := result["keep_distance_from_tip"].(float64); ok {
-		// Treat 0 as null for optional fields
-		if keepDistanceFromTip == 0 {
-			data.KeepDistanceFromTip = types.Int64Null()
-		} else {
-			data.KeepDistanceFromTip = types.Int64Value(int64(keepDistanceFromTip))
-		}
+		data.KeepDistanceFromTip = types.Int64Value(int64(keepDistanceFromTip))
 	}
 	if notificationEmail, ok := result["notification_email"].(string); ok {
 		// Treat empty string as null for optional fields
